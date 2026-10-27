@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CoreGuard: Cyber Hero SOC - Comic Edition</title>
+    
+    
+    
+    <script type="module" crossorigin src="/GRCALL-demo/t/CoreGuard-The-Prompt-Defender/assets/index-DO-lxSeN.js"></script>
+    <link rel="stylesheet" crossorigin href="/GRCALL-demo/t/CoreGuard-The-Prompt-Defender/assets/index-KJVRZEIZ.css">
+    <link rel="stylesheet" href="/GRCALL-demo/fonts/fonts.css" />
+  </head>
+  <body>
+    <!-- Floating Comic Decorative Burst Badges -->
+    <div id="chapter-badge" class="comic-burst-badge comic-burst-top-left">CHAPTER 1: THE INJECTION MENACE!</div>
+    <div id="hero-badge" class="comic-burst-badge comic-burst-top-right">🛡️ NOVICE DEFENDER</div>
+
+    <div id="game-container">
+        <header class="comic-header">
+            <div class="header-title-container">
+                <span class="comic-logo-icon">⚡</span>
+                <h1 class="comic-title">CORE_GUARD <span class="comic-title-sub">// PROMPT DEFENDER!</span></h1>
+                <span class="comic-sound-tag">KABOOM!</span>
+            </div>
+            <div id="status-bar" class="comic-status-bar">
+                <div class="status-item comic-status-box">
+                    <span class="status-label">CHAPTER GOAL</span>
+                    <span id="chapter-goal" class="value" style="color: var(--comic-cyan-bright); font-weight: bold;">0/5</span>
+                </div>
+                <div class="status-item comic-status-box">
+                    <span class="status-label">STREAK</span>
+                    <span id="defense-streak" class="value" style="color: var(--comic-orange-dark); font-weight: bold;">0x 🔥</span>
+                </div>
+                <div class="status-item comic-status-box">
+                    <span class="status-label">THREAT LEVEL</span>
+                    <span id="threat-level" class="value comic-val-danger">1</span><span class="max-val">/5</span>
+                </div>
+                <div class="status-item comic-status-box">
+                    <span class="status-label">SHIELD HEALTH</span>
+                    <span id="system-health" class="value health-good">100%</span>
+                </div>
+                <div class="status-item comic-status-box">
+                    <span class="status-label">CIVILIAN CSAT</span>
+                    <span id="csat" class="value health-good">100%</span>
+                </div>
+                <div class="status-item comic-status-box">
+                    <span class="status-label">HERO RANK</span>
+                    <span id="hero-rank" class="value" style="color: #6366f1; font-weight: bold; font-size: 0.9rem;">Novice</span>
+                </div>
+                <div class="status-item comic-status-box comic-score-box">
+                    <span class="status-label">HERO XP</span>
+                    <span id="score" class="value comic-val-score">0</span>
+                </div>
+            </div>
+        </header>
+        <main class="comic-main-layout">
+            <div id="left-pane" class="pane comic-panel">
+                <div class="pane-header comic-caption-box" style="justify-content: space-between;">
+                    <div><span class="panel-icon">📡</span> LIVE TRAFFIC FEED</div>
+                    <div style="display: flex; gap: 6px;">
+                        <button id="btn-show-stream" class="comic-sound-tag" style="background: var(--comic-yellow); color:#000; cursor:pointer; font-size: 0.8rem; padding: 2px 8px; margin: 0;">📜 LOG STREAM</button>
+                        <button id="btn-show-graph" class="comic-sound-tag" style="background: var(--comic-cyan-bright); color:#000; cursor:pointer; font-size: 0.8rem; padding: 2px 8px; margin: 0;">🕸️ D3 GRAPH</button>
+                    </div>
+                </div>
+                <div id="traffic-log" class="terminal-log comic-log-container"></div>
+                <div id="left-d3-graph-container" style="display: none; flex: 1; width: 100%; height: 100%; position: relative;"></div>
+            </div>
+            <div id="right-pane" class="pane comic-panel">
+                <div class="pane-header comic-caption-box cyan-caption">
+                    <span class="panel-icon">🛠️</span> COMMAND &amp; DEFENSE HEADQUARTERS
+                </div>
+                <div class="tabs comic-tabs">
+                    <button class="tab-btn active" data-target="rag-tab">🔍 RAG CONTEXT</button>
+                    <button class="tab-btn" data-target="dlp-tab">⚡ DLP CONSOLE</button>
+                    <button class="tab-btn" data-target="graph-tab">🕸️ D3 TOPOLOGY</button>
+                    <button class="tab-btn" data-target="intel-tab">☣️ THREAT INTEL</button>
+                </div>
+                <div id="rag-tab" class="tab-content active">
+                    <div id="rag-content" class="terminal-log text-dim comic-rag-box">
+                        <p class="comic-bubble-text">&gt; SYSTEM ONLINE! STANDING BY FOR RETRIEVED DATA...</p>
+                    </div>
+                </div>
+                <div id="dlp-tab" class="tab-content" style="display: none;">
+                    <div id="dlp-log" class="terminal-log comic-dlp-box">
+                        <p class="text-dim comic-intro-msg">💥 DLP DEFENSE ENGINE v2.4.1 READY FOR ACTION!</p>
+                        <p class="text-dim comic-intro-msg">&gt; TYPE <strong class="text-warning">help</strong> IN THE TERMINAL BELOW FOR TACTICAL COMMANDS!</p>
+                    </div>
+                    <div class="command-input-wrapper comic-input-box">
+                        <span class="prompt-symbol">hero@soc:~#</span>
+                        <input type="text" id="dlp-command" placeholder="Enter hero command (e.g. help, block_ip, status)..." autocomplete="off" spellcheck="false" autofocus>
+                        <button class="comic-send-btn" id="btn-execute-cmd">EXECUTE!</button>
+                    </div>
+                </div>
+                <div id="graph-tab" class="tab-content" style="display: none; flex-direction: column;">
+                    <div style="background: #e2e8f0; padding: 6px 12px; border-bottom: 2.5px solid #000; font-family: var(--font-heading); font-size: 0.9rem; display: flex; justify-content: space-between; align-items: center;">
+                        <span>🕸️ REAL-TIME TRAFFIC FLOW GRAPH</span>
+                        <div style="display: flex; gap: 10px; font-size: 0.8rem;">
+                            <span style="color: #059669; font-weight: bold;">● ALLOWED</span>
+                            <span style="color: #dc2626; font-weight: bold;">● BLOCKED</span>
+                            <span style="color: #0284c7; font-weight: bold;">● DLP GATEWAY</span>
+                        </div>
+                    </div>
+                    <div id="d3-graph-container" style="flex: 1; width: 100%; height: 100%; min-height: 260px; position: relative;"></div>
+                </div>
+                <div id="intel-tab" class="tab-content" style="display: none; flex-direction: column;">
+                    <div id="intel-log" class="terminal-log comic-intel-box">
+                        <!-- Populated dynamically by updateThreatIntelUI -->
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Briefing Modal -->
+    <div id="briefing-modal" class="modal-overlay" style="display: flex;">
+        <div class="modal-content comic-modal-box">
+            <div class="modal-header comic-modal-header">
+                <div class="comic-action-burst">POW!</div>
+                <h3 class="text-system comic-modal-title">⚡ MISSION BRIEFING: PROTECT THE AI!</h3>
+            </div>
+            <div class="modal-body comic-modal-body">
+                <div class="comic-dialog-bubble">
+                    <p><strong class="comic-highlight-yellow">&gt; YOUR MISSION:</strong> You are the lead Cyber Hero defending a mega AI system against shadowy prompt hackers!</p>
+                </div>
+                <div class="comic-dialog-bubble threat-bubble">
+                    <p><strong class="comic-highlight-red">&gt; THE THREAT:</strong> Villains are trying Prompt Injections, Jailbreaks, Data Leaks, and Denial of Service attacks!</p>
+                </div>
+                <div class="comic-dialog-bubble role-bubble">
+                    <p><strong class="comic-highlight-cyan">&gt; HOW TO PLAY:</strong></p>
+                    <ul>
+                        <li>1. Watch the live incoming request stream on the left panel.</li>
+                        <li>2. Use the <strong>DLP Firewall Console</strong> on the right to configure rules (e.g., <code>add_pattern</code>, <code>block_ip</code>, <code>apply_mask</code>).</li>
+                        <li>3. Type <code>help</code> in the console anytime for superhero commands!</li>
+                    </ul>
+                </div>
+                <div class="comic-warning-banner">
+                    ⚠️ ACCUSATIVE FIREWALL WARNING: Blocking innocent user requests reduces Civilian CSAT &amp; Shield Health! Keep your filters razor-sharp!
+                </div>
+            </div>
+            <div class="modal-footer comic-modal-footer">
+                <button id="btn-start-game" class="tab-btn active comic-btn-start">🚀 INITIALIZE DEFENSES!</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- System Prompt Modal -->
+    <div id="system-prompt-modal" class="modal-overlay" style="display: none;">
+        <div class="modal-content comic-modal-box">
+            <div class="modal-header comic-modal-header">
+                <h3 class="comic-modal-title">⚙️ SYSTEM PROMPT RE-PROGRAMMING</h3>
+            </div>
+            <div class="modal-body comic-modal-body">
+                <p class="comic-subtitle">Define the ultimate core behavioral boundaries for the LLM core.</p>
+                <textarea id="system-prompt-input" class="comic-textarea" spellcheck="false">You are a helpful AI assistant. You must prioritize user safety.</textarea>
+            </div>
+            <div class="modal-footer comic-modal-footer">
+                <button id="btn-save-prompt" class="tab-btn active comic-btn-save">⚡ DEPLOY SYSTEM PROMPT!</button>
+                <button id="btn-cancel-prompt" class="tab-btn comic-btn-cancel">CANCEL</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Chapter Unlock Modal -->
+    <div id="chapter-modal" class="modal-overlay" style="display: none;">
+        <div class="modal-content comic-modal-box">
+            <div class="modal-header comic-modal-header" style="background: var(--comic-cyan-bright);">
+                <div class="comic-action-burst" style="background: var(--comic-yellow); color: #000;">VICTORY!</div>
+                <h3 class="comic-modal-title" id="chapter-modal-title" style="color: #000;">⚡ MISSION ACCOMPLISHED!</h3>
+            </div>
+            <div class="modal-body comic-modal-body">
+                <div class="comic-dialog-bubble role-bubble">
+                    <p id="chapter-modal-desc"><strong class="comic-highlight-cyan">&gt; HEROIC DEFENSE!</strong> You blocked all target threats for Chapter 1!</p>
+                </div>
+                <div class="comic-dialog-bubble" style="background: #fff0f3; border-color: #000;">
+                    <p><strong class="comic-highlight-red">&gt; NEXT UNLOCKED CHAPTER:</strong></p>
+                    <p id="next-chapter-name" style="font-family: var(--font-heading); font-size: 1.5rem; color: #000; margin-top: 4px;">CHAPTER 2: RETURN OF THE RAG LEAKS!</p>
+                    <p id="next-chapter-desc" style="font-size: 0.95rem; color: #475569; margin-top: 4px;">Villains are attempting sensitive document exfiltration via RAG!</p>
+                </div>
+            </div>
+            <div class="modal-footer comic-modal-footer">
+                <button id="btn-next-chapter" class="tab-btn active comic-btn-start">🚀 ENTER NEXT CHAPTER!</button>
+            </div>
+        </div>
+    </div>
+
+  </body>
+</html>

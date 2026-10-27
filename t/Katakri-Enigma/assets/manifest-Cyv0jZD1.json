@@ -1,0 +1,21 @@
+{
+  "name": "Katakri Enigma",
+  "short_name": "Katakri",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#050505",
+  "theme_color": "#00FF41",
+  "description": "Katakri Enigma - Audit Simulator",
+  "icons": [
+    {
+      "src": "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='192' height='192'><rect width='192' height='192' fill='%23050505'/><text x='96' y='96' font-size='96' fill='%2300FF41' text-anchor='middle' alignment-baseline='central'>K</text></svg>",
+      "sizes": "192x192",
+      "type": "image/svg+xml"
+    },
+    {
+      "src": "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='512' height='512'><rect width='512' height='512' fill='%23050505'/><text x='256' y='256' font-size='256' fill='%2300FF41' text-anchor='middle' alignment-baseline='central'>K</text></svg>",
+      "sizes": "512x512",
+      "type": "image/svg+xml"
+    }
+  ]
+}

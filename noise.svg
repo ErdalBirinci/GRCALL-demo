@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="160" height="160" viewBox="0 0 160 160">
+  <!--
+    Locally generated replacement for the landing page's decorative noise texture.
+    The upstream landing page loaded this from a third-party gradient service that now
+    answers 402 and left a broken request on every page load. Hosting it here keeps
+    GRCALL fully self-contained.
+  -->
+  <filter id="grcall-noise">
+    <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="3" stitchTiles="stitch" />
+    <feColorMatrix type="saturate" values="0" />
+  </filter>
+  <rect width="160" height="160" filter="url(#grcall-noise)" opacity="0.6" />
+</svg>

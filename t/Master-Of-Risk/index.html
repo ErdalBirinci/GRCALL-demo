@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Master of Risk</title>
+    <link rel="manifest" href="/GRCALL-demo/t/Master-Of-Risk/manifest.json" />
+    <meta name="theme-color" content="#14b8a6" />
+    <script type="module" crossorigin src="/GRCALL-demo/t/Master-Of-Risk/assets/index-DKOVI2oY.js"></script>
+    <link rel="stylesheet" crossorigin href="/GRCALL-demo/t/Master-Of-Risk/assets/index-C9-uCRFo.css">
+    <link rel="stylesheet" href="/GRCALL-demo/fonts/fonts.css" />
+  </head>
+  <body>
+    <div id="root"></div>
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/GRCALL-demo/sw.js').then((registration) => {
+            console.log('SW registered: ', registration);
+          }).catch((registrationError) => {
+            console.log('SW registration failed: ', registrationError);
+          });
+        });
+      }
+    </script>
+  </body>
+</html>
+

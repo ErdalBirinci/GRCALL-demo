@@ -1,0 +1,212 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Neural Net-Worth</title>
+    
+    <script type="module" crossorigin src="/GRCALL-demo/t/Neural-Net-Worth/assets/index-BFwyXEA7.js"></script>
+    <link rel="stylesheet" crossorigin href="/GRCALL-demo/t/Neural-Net-Worth/assets/index-CgVFaqi4.css">
+    <link rel="stylesheet" href="/GRCALL-demo/fonts/fonts.css" />
+  </head>
+  <body class="bg-yellow-300 flex items-center justify-center h-screen w-screen m-0 overflow-hidden font-['Comic_Neue']">
+    <div class="w-[1024px] h-[768px] bg-white text-black flex flex-col overflow-hidden relative shadow-[16px_16px_0px_#000] border-8 border-black font-bold">
+      <!-- HEADER SECTION: COMMAND CENTER -->
+      <header class="h-24 border-b-8 border-black flex items-center justify-between px-6 bg-pink-200">
+        <div class="flex items-center gap-4">
+          <div class="w-12 h-12 border-4 border-black bg-yellow-400 flex items-center justify-center -rotate-6 shadow-[4px_4px_0px_#000]">
+            <div class="font-['Bangers'] text-black text-3xl">N</div>
+          </div>
+          <div class="transform -rotate-2">
+            <h1 class="text-3xl font-['Bangers'] tracking-widest text-black uppercase drop-shadow-[2px_2px_0px_#fff]">NEURAL NET-WORTH</h1>
+            <p class="text-xs text-black font-bold uppercase tracking-widest bg-white px-2 border-2 border-black inline-block shadow-[2px_2px_0px_#000] transform rotate-1">NIST RMF SIMULATOR</p>
+          </div>
+        </div>
+        <div class="flex gap-4 items-center">
+          <div class="text-center bg-blue-300 border-4 border-black px-4 py-1 shadow-[4px_4px_0px_#000] transform rotate-1">
+            <p class="text-[10px] text-black font-black uppercase">Month</p>
+            <p class="text-2xl font-['Bangers'] text-black drop-shadow-[1px_1px_0px_#fff]" id="ui-month">01<span class="text-sm">/36</span></p>
+          </div>
+          <div class="text-center bg-green-400 border-4 border-black px-4 py-1 shadow-[4px_4px_0px_#000] transform -rotate-2">
+            <p class="text-[10px] text-black font-black uppercase">Budget</p>
+            <p class="text-2xl font-['Bangers'] text-black drop-shadow-[1px_1px_0px_#fff]" id="ui-budget">$500,000</p>
+          </div>
+          <div class="text-center bg-purple-300 border-4 border-black px-4 py-1 shadow-[4px_4px_0px_#000] transform rotate-2">
+            <p class="text-[10px] text-black font-black uppercase">Reputation</p>
+            <p class="text-2xl font-['Bangers'] text-black drop-shadow-[1px_1px_0px_#fff]" id="ui-reputation">100%</p>
+          </div>
+          <div class="text-center bg-yellow-400 border-4 border-black px-4 py-1 shadow-[4px_4px_0px_#000]">
+            <p class="text-[10px] text-black font-black uppercase">Actions</p>
+            <div class="flex gap-1 mt-1 justify-center" id="ui-ap">
+              <div class="w-4 h-4 bg-blue-500 border-2 border-black"></div>
+              <div class="w-4 h-4 bg-blue-500 border-2 border-black"></div>
+              <div class="w-4 h-4 bg-blue-500 border-2 border-black"></div>
+              <div class="w-4 h-4 bg-blue-500 border-2 border-black"></div>
+              <div class="w-4 h-4 bg-blue-500 border-2 border-black"></div>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <!-- MAIN GAMEPLAY AREA -->
+      <main class="flex-1 p-6 flex flex-col gap-6 bg-[radial-gradient(circle,#000_1px,transparent_1px)]" style="background-size: 20px 20px; background-color: #fde047;" id="game-board">
+        <!-- PROJECT CARDS -->
+        <div class="grid grid-cols-3 gap-6 h-[480px]" id="project-cards-container">
+        </div>
+
+        <!-- LOGS & ACTIONS -->
+        <div class="grid grid-cols-4 gap-6 flex-1">
+          <div class="col-span-3 bg-white border-4 border-black p-4 font-bold shadow-[8px_8px_0px_#000] relative">
+            <div class="absolute -top-4 -left-4 bg-red-400 border-4 border-black px-4 py-1 font-['Bangers'] text-xl shadow-[4px_4px_0px_#000] transform -rotate-3 tracking-wider">
+              TERMINAL FEED
+            </div>
+            <div class="text-sm space-y-2 overflow-hidden mt-4 h-24" id="terminal-feed">
+            </div>
+          </div>
+          <div class="flex flex-col gap-2 justify-end">
+            <button id="btn-advance-month" class="bg-blue-400 hover:bg-blue-300 text-black border-4 border-black font-['Bangers'] text-2xl uppercase p-2 transition-transform hover:-translate-y-1 hover:-translate-x-1 shadow-[4px_4px_0px_#000] hover:shadow-[6px_6px_0px_#000]">Advance Month!</button>
+            <button id="btn-global-strategy" class="bg-purple-400 hover:bg-purple-300 text-black border-4 border-black font-['Bangers'] text-xl uppercase p-1 transition-transform hover:-translate-y-1 hover:-translate-x-1 shadow-[4px_4px_0px_#000] hover:shadow-[6px_6px_0px_#000]">Upgrades!</button>
+            <button id="btn-crunch-time" class="bg-red-500 hover:bg-red-400 text-white border-4 border-black font-['Bangers'] text-lg uppercase p-1 transition-transform hover:-translate-y-1 hover:-translate-x-1 shadow-[4px_4px_0px_#000] hover:shadow-[6px_6px_0px_#000] drop-shadow-[1px_1px_0px_#000]">Crunch Time!</button>
+          </div>
+        </div>
+      </main>
+
+      <!-- STRATEGY MODAL -->
+      <div id="strategy-modal" class="hidden absolute inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-center justify-center p-8">
+        <div class="bg-white border-8 border-black max-w-2xl w-full shadow-[16px_16px_0px_#000] flex flex-col relative transform rotate-1">
+          <div class="p-6 border-b-4 border-black flex justify-between items-start bg-purple-300">
+            <div>
+              <p class="text-xs text-black font-black uppercase tracking-widest mb-1 bg-white inline-block px-2 border-2 border-black transform -rotate-2">GLOBAL STRATEGY</p>
+              <h2 class="text-4xl font-['Bangers'] text-black drop-shadow-[2px_2px_0px_#fff]">Corporate Upgrades!</h2>
+            </div>
+            <button id="btn-close-strategy" class="bg-red-500 hover:bg-red-400 text-white border-4 border-black w-10 h-10 font-['Bangers'] text-2xl shadow-[4px_4px_0px_#000] hover:translate-y-1 hover:translate-x-1 hover:shadow-[2px_2px_0px_#000] flex items-center justify-center">X</button>
+          </div>
+          <div class="p-6 text-black space-y-4 bg-yellow-100" id="strategy-list">
+            <!-- Upgrades injected here -->
+          </div>
+        </div>
+      </div>
+
+      <!-- EVENT MODAL -->
+      <div id="event-modal" class="hidden absolute inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-center justify-center p-8">
+        <div class="bg-white border-8 border-black max-w-2xl w-full shadow-[16px_16px_0px_#000] flex flex-col relative transform -rotate-1">
+          <div class="p-6 border-b-4 border-black flex justify-between items-start bg-red-400" id="modal-header-bg">
+            <div>
+              <p class="text-xs text-black font-black uppercase tracking-widest mb-1 bg-white inline-block px-2 border-2 border-black transform rotate-2" id="modal-category">CRITICAL INCIDENT</p>
+              <h2 class="text-4xl font-['Bangers'] text-white drop-shadow-[2px_2px_0px_#000]" id="modal-title">Event Title!</h2>
+            </div>
+          </div>
+          <div class="p-6 text-black space-y-4 bg-blue-100">
+            <p id="modal-description" class="text-lg font-bold">Event Description</p>
+            
+            <div class="bg-white p-4 border-4 border-black font-bold text-sm shadow-[4px_4px_0px_#000]">
+              <p class="text-black mb-2 uppercase tracking-widest text-xs bg-yellow-300 inline-block px-2 border-2 border-black transform -rotate-1">NIST RMF Defense Check</p>
+              <div id="modal-defense-log" class="space-y-1">
+                <!-- Logs injected here -->
+              </div>
+            </div>
+
+            <div class="grid grid-cols-2 gap-4 pt-4 border-t-4 border-black">
+              <div class="bg-white border-4 border-black p-2 shadow-[4px_4px_0px_#000] text-center transform -rotate-2">
+                <p class="text-xs text-black uppercase tracking-widest font-black">Rep Impact</p>
+                <p class="text-3xl font-['Bangers'] text-red-500 drop-shadow-[1px_1px_0px_#000]" id="modal-rep-impact">-0%</p>
+              </div>
+              <div class="bg-white border-4 border-black p-2 shadow-[4px_4px_0px_#000] text-center transform rotate-2">
+                <p class="text-xs text-black uppercase tracking-widest font-black">Budget Impact</p>
+                <p class="text-3xl font-['Bangers'] text-red-500 drop-shadow-[1px_1px_0px_#000]" id="modal-budget-impact">-$0</p>
+              </div>
+            </div>
+          </div>
+          <div class="p-4 bg-pink-200 border-t-4 border-black flex justify-end">
+            <button id="btn-close-modal" class="px-6 py-2 bg-green-400 hover:bg-green-300 text-black font-['Bangers'] text-2xl uppercase tracking-widest border-4 border-black shadow-[4px_4px_0px_#000] hover:translate-y-1 hover:translate-x-1 hover:shadow-[2px_2px_0px_#000]">Acknowledge!</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- WELCOME SCREEN -->
+      <div id="welcome-screen" class="absolute inset-0 z-[100] bg-blue-400 flex flex-col items-center justify-center p-4 bg-[radial-gradient(circle,#fff_2px,transparent_2px)]" style="background-size: 30px 30px;">
+        <div class="max-w-3xl w-full text-center mb-6 bg-white border-8 border-black p-6 shadow-[16px_16px_0px_#000] transform -rotate-1 relative">
+          <div class="absolute -top-8 -right-8 w-24 h-24 border-4 border-black bg-yellow-400 flex items-center justify-center rotate-12 shadow-[8px_8px_0px_#000]">
+            <div class="font-['Bangers'] text-black text-6xl">N</div>
+          </div>
+          <h1 class="text-6xl font-['Bangers'] tracking-tight text-black mb-2 drop-shadow-[3px_3px_0px_#fff]">NEURAL NET-WORTH</h1>
+          <p class="text-2xl text-black font-black mb-4 uppercase bg-yellow-300 inline-block px-4 py-1 border-4 border-black transform -rotate-2">The NIST RMF Simulator!</p>
+          <p class="text-black text-base max-w-xl mx-auto mb-4 font-bold">
+            Take on the role of Chief AI Officer. Build, secure, and deploy three critical AI projects over a 36-month timeline while navigating budget constraints, board directives, and unpredictable real-world risks.
+          </p>
+          <button id="btn-how-to-play" class="px-6 py-2 bg-red-500 hover:bg-red-400 text-white font-['Bangers'] text-3xl uppercase tracking-widest border-4 border-black shadow-[8px_8px_0px_#000] hover:translate-y-1 hover:translate-x-1 hover:shadow-[4px_4px_0px_#000] drop-shadow-[2px_2px_0px_#000] transform rotate-1">How to Play?</button>
+        </div>
+
+        <div class="grid grid-cols-3 gap-6 max-w-5xl w-full">
+          <!-- Easy -->
+          <div class="bg-green-300 border-4 border-black p-4 flex flex-col items-center text-center hover:bg-green-200 transition-transform hover:-translate-y-2 cursor-pointer shadow-[8px_8px_0px_#000] transform rotate-2" onclick="startGame('easy')">
+            <h3 class="text-black font-['Bangers'] text-3xl uppercase tracking-widest mb-2 bg-white px-3 py-1 border-2 border-black drop-shadow-[1px_1px_0px_#000]">Startup (Easy)</h3>
+            <p class="text-sm text-black font-bold mb-4 flex-1">Ample funding and a forgiving public. Ideal for learning!</p>
+            <div class="text-left w-full text-xs text-black font-black space-y-1 bg-white p-3 border-2 border-black shadow-[4px_4px_0px_#000]">
+              <p>Budget: $1,000,000</p>
+              <p>Reputation: 100%</p>
+              <p>Action Points: 6/mo</p>
+              <p>Ops Cost: $10k/mo</p>
+            </div>
+          </div>
+          <!-- Normal -->
+          <div class="bg-blue-300 border-4 border-black p-4 flex flex-col items-center text-center hover:bg-blue-200 transition-transform hover:-translate-y-2 cursor-pointer shadow-[8px_8px_0px_#000] transform -rotate-1" onclick="startGame('normal')">
+            <h3 class="text-black font-['Bangers'] text-3xl uppercase tracking-widest mb-2 bg-white px-3 py-1 border-2 border-black drop-shadow-[1px_1px_0px_#000]">Enterprise (Normal)</h3>
+            <p class="text-sm text-black font-bold mb-4 flex-1">Standard corporate conditions. Balanced budget!</p>
+            <div class="text-left w-full text-xs text-black font-black space-y-1 bg-white p-3 border-2 border-black shadow-[4px_4px_0px_#000]">
+              <p>Budget: $500,000</p>
+              <p>Reputation: 100%</p>
+              <p>Action Points: 5/mo</p>
+              <p>Ops Cost: $15k/mo</p>
+            </div>
+          </div>
+          <!-- Hard -->
+          <div class="bg-red-400 border-4 border-black p-4 flex flex-col items-center text-center hover:bg-red-300 transition-transform hover:-translate-y-2 cursor-pointer shadow-[8px_8px_0px_#000] transform rotate-1" onclick="startGame('hard')">
+            <h3 class="text-white font-['Bangers'] text-3xl uppercase tracking-widest mb-2 bg-black px-3 py-1 border-2 border-black drop-shadow-[1px_1px_0px_#fff]">Crisis (Hard)</h3>
+            <p class="text-sm text-black font-bold mb-4 flex-1">A company on the brink. Low funds, poor reputation!</p>
+            <div class="text-left w-full text-xs text-black font-black space-y-1 bg-white p-3 border-2 border-black shadow-[4px_4px_0px_#000]">
+              <p>Budget: $250,000</p>
+              <p>Reputation: 80%</p>
+              <p>Action Points: 4/mo</p>
+              <p>Ops Cost: $20k/mo</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- HOW TO PLAY MODAL -->
+      <div id="help-modal" class="hidden absolute inset-0 z-[110] bg-black/60 backdrop-blur-sm flex items-center justify-center p-8">
+        <div class="bg-yellow-200 border-8 border-black max-w-2xl w-full shadow-[16px_16px_0px_#000] flex flex-col relative overflow-hidden max-h-full transform rotate-1">
+          <div class="p-6 border-b-4 border-black flex justify-between items-start bg-blue-300">
+            <div>
+              <p class="text-xs text-black font-black uppercase tracking-widest mb-1 bg-white px-2 border-2 border-black inline-block transform -rotate-2">FIELD MANUAL</p>
+              <h2 class="text-4xl font-['Bangers'] text-black drop-shadow-[2px_2px_0px_#fff]">How to Play!</h2>
+            </div>
+            <button id="btn-close-help" class="bg-red-500 hover:bg-red-400 text-white border-4 border-black w-10 h-10 font-['Bangers'] text-2xl shadow-[4px_4px_0px_#000] hover:translate-y-1 hover:translate-x-1 hover:shadow-[2px_2px_0px_#000] flex items-center justify-center">X</button>
+          </div>
+          <div class="p-6 text-black space-y-4 overflow-y-auto font-bold text-sm bg-white">
+            <p class="bg-yellow-100 p-2 border-2 border-black"><strong class="font-black text-red-500">Goal:</strong> Survive for 36 months without going bankrupt or dropping below 0% reputation!</p>
+            
+            <h3 class="text-white bg-black px-2 py-1 font-['Bangers'] text-xl inline-block transform -rotate-1 mt-4">1. Action Points (AP) & Budget</h3>
+            <p>Every month you receive AP and must pay Baseline Ops Costs. Spend your AP and Budget to invest in projects. When you are done, click "Advance Month".</p>
+            
+            <h3 class="text-white bg-black px-2 py-1 font-['Bangers'] text-xl inline-block transform rotate-1 mt-4">2. The NIST RMF Pillars</h3>
+            <p>To safely deploy AI, you must invest in four governance pillars. If a critical incident occurs, your defense is calculated based on these pillars.</p>
+            <ul class="list-disc pl-5 space-y-1 text-xs">
+              <li><span class="text-blue-600 font-black">MAP:</span> Contextualize risks (Defends against Edge Cases)</li>
+              <li><span class="text-green-600 font-black">MEASURE:</span> Test and evaluate (Defends against Bias)</li>
+              <li><span class="text-purple-600 font-black">MANAGE:</span> Prioritize and mitigate (Defends against Hallucinations/Security)</li>
+              <li><span class="text-red-600 font-black">GOVERN:</span> Cultivate culture (Defends against Compliance Audits)</li>
+            </ul>
+
+            <h3 class="text-white bg-black px-2 py-1 font-['Bangers'] text-xl inline-block transform -rotate-1 mt-4">3. Deployment & Revenue</h3>
+            <p>Once a project's Dev progress hits 100%, you can Deploy it to generate monthly revenue. But beware: deployed projects have a 40% chance every month to trigger Critical Incidents!</p>
+
+            <h3 class="text-white bg-black px-2 py-1 font-['Bangers'] text-xl inline-block transform rotate-1 mt-4">4. Trustworthy AI</h3>
+            <p>If you push all 4 NIST pillars (Map, Measure, Manage, Govern) to 100% on a project, it achieves Trustworthy AI Certification. It will double its revenue and become immune to incidents.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

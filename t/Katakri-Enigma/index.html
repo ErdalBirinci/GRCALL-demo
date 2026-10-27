@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Katakri Enigma: The Finnish Protocol (Comic Edition)</title>
+    
+    
+    
+    <link rel="manifest" href="/GRCALL-demo/t/Katakri-Enigma/assets/manifest-Cyv0jZD1.json" />
+    <script type="module" crossorigin src="/GRCALL-demo/t/Katakri-Enigma/assets/index-_IetXYqo.js"></script>
+    <link rel="stylesheet" crossorigin href="/GRCALL-demo/t/Katakri-Enigma/assets/index-CHKB0w0R.css">
+    <link rel="stylesheet" href="/GRCALL-demo/fonts/fonts.css" />
+  </head>
+  <body class="comic-theme">
+    <!-- WELCOME OVERLAY / COMIC BOOK COVER -->
+    <div id="welcome-overlay" class="overlay">
+      <div class="overlay-content comic-cover">
+        <div class="comic-badge-top">ISSUE #1 • SPECIAL AUDIT EDITION</div>
+        <h1 class="comic-main-title">KATAKRI ENIGMA</h1>
+        <h3 class="comic-subtitle">★ THE FINNISH PROTOCOL ★</h3>
+        
+        <div class="comic-caption-box">
+          <div class="comic-box-header">⚡ MISSION BRIEF & HOW TO PLAY ⚡</div>
+          <ul class="comic-rules-list">
+            <li><strong>ELITE AUDITOR:</strong> Uncover high-stakes security non-compliance across 3 corporate subdivisions.</li>
+            <li><strong>TERMINAL DECK:</strong> Use bash commands (<span class="comic-cmd">ls</span>, <span class="comic-cmd">cd</span>, <span class="comic-cmd">cat</span>) in Panel 1 to inspect files and logs.</li>
+            <li><strong>EVIDENCE DOSSIER:</strong> Analyze confidential documents and witness interview transcripts in Panel 2.</li>
+            <li><strong>REPORT VIOLATIONS:</strong> Execute <span class="comic-cmd">flag [target]</span> to bust illegal operations!</li>
+            <li><strong>LIMITS:</strong> You have <strong>45 MINUTES</strong> and maximum <strong>3 STRIKES</strong> before clearance is revoked!</li>
+            <li><strong>BONUS:</strong> Solve regex puzzles to unlock auto-patch bash scripts and inspect IAM / EDR consoles!</li>
+          </ul>
+        </div>
+
+        <button id="start-btn" class="comic-btn-primary" onclick="startGame()">💥 INITIALIZE AUDIT! 💥</button>
+      </div>
+    </div>
+
+    <!-- TOP STATUS RIBBON -->
+    <div class="status-bar comic-ribbon">
+      <div class="comic-status-group">
+        <span class="comic-label">SYSTEM:</span> 
+        <span class="comic-value">KATAKRI-V3-PROT</span> 
+        <span class="badge comic-badge">LVL 1: SUBDIVISION-T</span>
+      </div>
+      <div class="comic-status-group comic-stats-container">
+        <div class="comic-stat"><span class="comic-label">TIME LEFT:</span> <span id="timer" class="comic-stat-val text-yellow">45:00</span></div>
+        <div class="comic-stat"><span class="comic-label">AUDIT SCORE:</span> <span id="score" class="comic-stat-val text-cyan">100</span></div>
+        <div class="comic-stat"><span class="comic-label">STRIKES:</span> <span id="strikes" class="comic-stat-val text-red">0/3</span></div>
+      </div>
+    </div>
+
+    <!-- MAIN APP COMIC PANELS -->
+    <div id="app-container">
+      <!-- LEFT PANEL: TERMINAL -->
+      <div id="left-pane" class="pane comic-panel">
+        <div class="pane-header comic-panel-header">
+          <span class="panel-tag">PANEL 1</span>
+          <span class="panel-title">AUDITOR'S TERMINAL DECK</span>
+        </div>
+        <div id="terminal-output" class="comic-terminal-screen"></div>
+        <div id="terminal-input-container" class="comic-input-box">
+          <span class="prompt">root@auditor:~#</span>
+          <input type="text" id="terminal-input" autocomplete="off" autofocus spellcheck="false" placeholder="type bash command here..." />
+        </div>
+      </div>
+
+      <!-- RIGHT PANEL: EVIDENCE DOSSIER -->
+      <div id="right-pane" class="pane comic-panel">
+        <div class="pane-header comic-panel-header">
+          <span class="panel-tag">PANEL 2</span>
+          <span class="panel-title">CLASSIFIED EVIDENCE DOSSIER</span>
+        </div>
+        <div id="evidence-display" class="comic-dossier-paper">
+          <div class="scanline"></div>
+          <div id="evidence-content">
+            [WAITING FOR TERMINAL COMMAND...]
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- INTERVIEW / DIALOGUE OVERLAY -->
+    <div id="dialogue-overlay" class="overlay hidden">
+      <div class="overlay-content dialogue comic-dialogue-window">
+        <div class="comic-dialogue-header">
+          <div class="dialogue-title-group">
+            <span class="dialogue-icon">👤</span>
+            <h2 id="npc-name" class="npc-comic-name">NPC_NAME</h2>
+          </div>
+          <div class="suspicion-container">
+            <span class="suspicion-label">SUSPICION LEVEL:</span> 
+            <div class="suspicion-bar-bg">
+              <div id="suspicion-bar" class="suspicion-bar-fill"></div>
+            </div>
+            <span id="suspicion-meter" class="suspicion-percent">0%</span>
+          </div>
+        </div>
+        <div class="comic-dialogue-body">
+          <div class="dialogue-column transcript-col">
+            <div class="column-badge">SPEECH BUBBLE // TRANSCRIPT</div>
+            <div class="speech-bubble">
+              <p id="dialogue-text"></p>
+            </div>
+          </div>
+          <div class="dialogue-column response-col">
+            <div class="column-badge">AUDITOR'S RESPONSE OPTIONS</div>
+            <div id="dialogue-options" class="comic-options-list">
+              <!-- Options injected here -->
+            </div>
+            <button id="close-dialogue-btn" class="comic-btn-secondary hidden" onclick="closeDialogue()">❌ END INTERVIEW</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- IAM CONSOLE OVERLAY -->
+    <div id="iam-overlay" class="overlay hidden">
+      <div class="overlay-content iam-console comic-modal-box">
+        <div class="comic-modal-header iam-theme">
+          <h2>🔐 ENTERPRISE IDENTITY & ACCESS MANAGEMENT (IAM)</h2>
+          <button class="comic-close-btn" onclick="closeIAM()">✖ CLOSE</button>
+        </div>
+        <div class="comic-modal-body">
+          <table class="comic-table">
+            <thead>
+              <tr>
+                <th>Display Name</th>
+                <th>Department</th>
+                <th>Roles</th>
+                <th>MFA Status</th>
+                <th>Last Sign-On</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="iam-table-body">
+              <!-- Users injected here -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- GAME OVER OVERLAY -->
+    <div id="game-over-overlay" class="overlay hidden">
+      <div class="overlay-content error comic-defeat-box">
+        <div class="comic-burst-tag">BOOM! BREACH DETECTED!</div>
+        <h1>CLEARANCE REVOKED!</h1>
+        <h2>SECURITY BREACH / STRIKE OUT</h2>
+        <p id="game-over-reason"></p>
+        <button class="comic-btn-primary" onclick="location.reload()">⚡ REBOOT TERMINAL ⚡</button>
+      </div>
+    </div>
+
+    <!-- MDM/EDR CONSOLE OVERLAY -->
+    <div id="mdm-overlay" class="overlay hidden">
+      <div class="overlay-content mdm-console comic-modal-box">
+        <div class="comic-modal-header mdm-theme">
+          <h2>🛡️ ENDPOINT MANAGEMENT (EDR) CONSOLE</h2>
+          <button class="comic-close-btn" onclick="closeMDM()">✖ CLOSE</button>
+        </div>
+        <div class="comic-modal-body">
+          <table class="comic-table">
+            <thead>
+              <tr>
+                <th>Device ID</th>
+                <th>Assigned To</th>
+                <th>OS Version</th>
+                <th>BitLocker</th>
+                <th>AV Defs</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="mdm-table-body">
+              <!-- Devices injected here -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- VICTORY / FINAL REPORT OVERLAY -->
+    <div id="victory-overlay" class="overlay hidden">
+      <div class="overlay-content formal-report comic-report-box" id="audit-report-container">
+        <div class="report-header comic-report-header">
+          <div class="comic-stamp">APPROVED</div>
+          <h1>OFFICIAL KATAKRI AUDIT REPORT</h1>
+          <p class="comic-confidential-tag">★ CONFIDENTIAL // GRAPHIC NOVEL DOSSIER ★</p>
+        </div>
+        <div id="victory-stats" class="comic-stats-grid"></div>
+        <div id="victory-summary" class="comic-summary-text"></div>
+        <div class="report-actions no-print">
+          <button class="comic-btn-primary" onclick="window.print()">🖨️ PRINT REPORT</button>
+          <button class="comic-btn-secondary" onclick="location.reload()">🔄 RESTART AUDIT</button>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
+

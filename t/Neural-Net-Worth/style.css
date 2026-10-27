@@ -1,0 +1,25 @@
+@import "tailwindcss";
+
+body { 
+  margin: 0; 
+  height: 100vh; 
+  display: flex; 
+  flex-direction: column; 
+  overflow: hidden; 
+  align-items: center; 
+  justify-content: center;
+}
+.pillar-bar { 
+  transition: width 0.3s ease; 
+}
+.corporate-grid { 
+  background-image: radial-gradient(circle, #e2e8f0 1px, transparent 1px); 
+  background-size: 30px 30px; 
+}
+.risk-badge { 
+  border: 1px solid currentColor; 
+  padding: 2px 8px; 
+  font-size: 10px; 
+  text-transform: uppercase; 
+  letter-spacing: 1px; 
+}

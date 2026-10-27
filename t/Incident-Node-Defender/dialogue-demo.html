@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DialogueManager Demo</title>
+    <!-- Import Google Fonts for the SaaS Light Theme look -->
+    
+    <!-- Include the Dialogue CSS -->
+    <link rel="stylesheet" href="./dialogue.css">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', sans-serif;
+            background-color: #f1f5f9; /* Slate 100 */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .main-menu {
+            text-align: center;
+        }
+        button.start-game {
+            padding: 12px 24px;
+            font-size: 18px;
+            font-weight: bold;
+            background-color: #0f172a;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        button.start-game:hover {
+            background-color: #1e293b;
+            transform: translateY(-2px);
+        }
+    </style>
+  <link rel="stylesheet" href="/GRCALL-demo/fonts/fonts.css" />
+</head>
+<body>
+
+    <div class="main-menu">
+        <h1>My Awesome Browser Game</h1>
+        <p>A light SaaS-themed visual novel intro.</p>
+        <button class="start-game" onclick="startIntro()">Start Game</button>
+    </div>
+
+    <!-- Include the Dialogue JS -->
+    <script src="./DialogueManager.js"></script>
+    <script>
+        const introSequence = [
+            {
+                speakerName: "System",
+                side: "center", // narrator mode
+                text: "Initialization sequence started. Establishing connection...",
+                color: "#64748b"
+            },
+            {
+                speakerName: "Alex",
+                side: "left",
+                text: "Hey, are you reading this? We finally managed to break through the firewall.",
+                color: "#3b82f6" 
+                // avatarUrl: "path/to/alex.png" (omitted to show placeholder fallback)
+            },
+            {
+                speakerName: "Commander",
+                side: "right",
+                text: "Loud and clear. It's about time. We have exactly 5 minutes before they trace the signal.",
+                color: "#ef4444"
+            },
+            {
+                speakerName: "Alex",
+                side: "left",
+                text: "Understood. Bypassing the mainframes now. Ready when you are."
+            }
+        ];
+
+        function startIntro() {
+            // Instantiate the manager
+            new DialogueManager(introSequence, () => {
+                // Callback fires when dialogue array completes or user clicks "Skip"
+                alert("Intro sequence complete! Loading main game...");
+            });
+        }
+    </script>
+</body>
+</html>

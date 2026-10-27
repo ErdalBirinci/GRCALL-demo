@@ -1,0 +1,37 @@
+{
+  "name": "GRCALL — GRC trainings in one system",
+  "short_name": "GRCALL",
+  "description": "The GRCHub landing page and all 93 Governance, Risk and Compliance training simulations, unified into one self-hosted system that works offline.",
+  "id": "/GRCALL-demo/",
+  "start_url": "/GRCALL-demo/",
+  "scope": "/GRCALL-demo/",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#fdfbf7",
+  "theme_color": "#fdfbf7",
+  "lang": "en",
+  "categories": [
+    "education",
+    "productivity"
+  ],
+  "icons": [
+    {
+      "src": "/GRCALL-demo/icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/GRCALL-demo/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/GRCALL-demo/icons/maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}

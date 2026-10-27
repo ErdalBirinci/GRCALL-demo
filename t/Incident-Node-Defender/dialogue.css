@@ -1,0 +1,195 @@
+/* dialogue.css - Visual Novel Dialogue System */
+.vn-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 9999;
+  background-color: rgba(254, 240, 138, 0.9); /* Bright yellow with opacity */
+  background-image: radial-gradient(#fbbf24 20%, transparent 20%), radial-gradient(#fbbf24 20%, transparent 20%);
+  background-size: 20px 20px;
+  background-position: 0 0, 10px 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  font-family: 'Comic Neue', cursive, sans-serif;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: auto;
+}
+
+.vn-overlay.vn-visible {
+  opacity: 1;
+}
+
+.vn-skip-btn {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: white;
+  border: 3px solid black;
+  border-radius: 4px;
+  padding: 8px 16px;
+  font-size: 14px;
+  font-weight: 600;
+  color: black;
+  cursor: pointer;
+  box-shadow: 4px 4px 0px black;
+  transition: all 0.1s;
+  z-index: 10000;
+  font-family: 'Bangers', cursive;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.vn-skip-btn:hover {
+  background: #fcd34d;
+}
+
+.vn-skip-btn:active {
+  box-shadow: 0px 0px 0px black;
+  transform: translate(4px, 4px);
+}
+
+.vn-stage {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  padding: 0 10%;
+  pointer-events: none;
+  box-sizing: border-box;
+}
+
+.vn-avatar-container {
+  width: 300px;
+  height: 400px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  opacity: 0;
+  transform: translateY(20px) scale(0.95);
+  margin-bottom: 120px;
+}
+
+.vn-avatar-container.vn-present {
+  opacity: 0.5;
+  transform: translateY(0) scale(0.95);
+}
+
+.vn-avatar-container.vn-active {
+  opacity: 1;
+  transform: translateY(0) scale(1.05);
+}
+
+/* Fallback for when no avatarUrl is provided */
+.vn-avatar-placeholder {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #e2e8f0, #cbd5e1);
+  box-shadow: 0 10px 25px -5px rgba(0,0,0,0.1);
+}
+
+.vn-avatar {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+.vn-dialogue-box {
+  position: relative;
+  width: 80%;
+  max-width: 900px;
+  background: #ffffff;
+  border-radius: 4px;
+  padding: 32px 40px;
+  margin-bottom: 40px;
+  box-shadow: 8px 8px 0px black;
+  border: 4px solid black;
+  z-index: 10000;
+  cursor: pointer;
+  box-sizing: border-box;
+  transition: transform 0.1s;
+}
+
+.vn-dialogue-box:active {
+  transform: translate(2px, 2px);
+  box-shadow: 6px 6px 0px black;
+}
+
+.vn-name-badge {
+  position: absolute;
+  top: -24px;
+  left: 20px;
+  background: #fcd34d;
+  color: black;
+  padding: 8px 20px;
+  border: 4px solid black;
+  border-radius: 4px;
+  font-weight: 700;
+  font-size: 24px;
+  font-family: 'Bangers', cursive;
+  letter-spacing: 0.05em;
+  box-shadow: 4px 4px 0px black !important;
+}
+
+.vn-text {
+  font-size: 24px;
+  line-height: 1.4;
+  color: black;
+  font-weight: 700;
+  min-height: 64px;
+}
+
+.vn-next-indicator {
+  position: absolute;
+  bottom: 20px;
+  right: 30px;
+  width: 24px;
+  height: 24px;
+  background-color: #3b82f6;
+  border: 3px solid black;
+  box-shadow: 2px 2px 0px black;
+  animation: vn-bounce 1s infinite;
+  opacity: 0;
+  transition: opacity 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+}
+
+.vn-next-indicator::after {
+  content: '';
+  width: 0;
+  height: 0;
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-top: 6px solid white;
+  margin-top: 2px;
+}
+
+.vn-next-indicator.vn-visible {
+  opacity: 1;
+}
+
+@keyframes vn-bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(5px); }
+}
+
+@media (max-width: 768px) {
+  .vn-stage { padding: 0 5%; }
+  .vn-avatar-container { width: 200px; height: 300px; margin-bottom: 100px; }
+  .vn-dialogue-box { width: 90%; padding: 24px 20px; margin-bottom: 20px; }
+  .vn-text { font-size: 16px; }
+  .vn-name-badge { left: 20px; font-size: 14px; top: -16px; padding: 6px 16px; }
+}

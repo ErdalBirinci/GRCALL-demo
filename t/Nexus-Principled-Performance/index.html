@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nexus: Principled Performance</title>
+    <script type="module" crossorigin src="/GRCALL-demo/t/Nexus-Principled-Performance/assets/index-Dy1M9XyH.js"></script>
+    <link rel="stylesheet" crossorigin href="/GRCALL-demo/t/Nexus-Principled-Performance/assets/index-C1MgQ0Gd.css">
+    <link rel="stylesheet" href="/GRCALL-demo/fonts/fonts.css" />
+  </head>
+  <body
+    class="comic-halftone-bg text-slate-900 font-sans h-screen overflow-hidden selection:bg-amber-300 relative"
+  >
+    <div
+      id="risk-background"
+      class="absolute inset-0 z-0 pointer-events-none"
+      style="opacity: 0; transition: opacity 1.5s ease-in-out"
+    >
+      <div
+        class="absolute inset-0 risk-anim mix-blend-multiply opacity-30"
+        style="
+          background: radial-gradient(
+            circle at 50% 50%,
+            #FF2E63 0%,
+            transparent 70%
+          );
+        "
+      ></div>
+    </div>
+    <div
+      id="game-container"
+      class="w-full h-full flex flex-col max-w-[1440px] mx-auto p-4 sm:p-5 relative z-10 gap-4"
+    >
+      <!-- Global Tooltip Container -->
+      <div
+        id="global-tooltip"
+        class="absolute z-[100] pointer-events-none opacity-0 transition-opacity duration-200 comic-panel-yellow text-slate-900 font-bold text-xs p-3 rounded-lg shadow-[4px_4px_0px_#000] max-w-xs border-3 border-black"
+      ></div>
+
+      <!-- Comic Header Banner -->
+      <header class="flex flex-col lg:flex-row items-center justify-between bg-[#FFDE00] border-4 border-black rounded-xl p-3 shadow-[6px_6px_0px_#000] shrink-0 gap-3 relative overflow-hidden">
+        
+        <!-- Left: Branding -->
+        <div class="flex items-center gap-3 shrink-0">
+          <div class="h-12 w-12 bg-white border-3 border-black flex items-center justify-center rounded-lg shadow-[3px_3px_0px_#000] text-black font-heading text-3xl font-extrabold select-none rotate-[-2deg]">
+            N
+          </div>
+          <div class="flex flex-col">
+            <h1 class="text-xl font-heading uppercase tracking-wider text-black leading-none drop-shadow-sm">NEXUS: PRINCIPLED PERFORMANCE!</h1>
+            <span class="text-[10px] font-comic uppercase tracking-widest text-slate-800 font-bold bg-white px-2 py-0.5 rounded border border-black inline-block mt-1 w-fit shadow-[2px_2px_0px_#000]">
+              ISSUE #1 • ENTERPRISE GRC COMICS
+            </span>
+          </div>
+        </div>
+
+        <!-- Center: HUD Stats (Comic Stat Callouts) -->
+        <div class="flex items-center bg-white border-3 border-black rounded-lg px-4 py-1.5 gap-4 shadow-[4px_4px_0px_#000] flex-wrap justify-center" id="hud">
+          <div class="hud-stat text-center" id="stat-month" data-tooltip="The current month. The game ends after Month 12. Complete the year with all silos below 20% to win."></div>
+          <div class="w-0.5 h-7 bg-black"></div>
+          <div class="hud-stat text-center" id="stat-ap" data-tooltip="Action Points. You get 3 AP per month. Most cards cost 1 AP, but Review cards cost 2."></div>
+          <div class="w-0.5 h-7 bg-black"></div>
+          <div class="hud-stat text-center" id="stat-budget" data-tooltip="Company Budget. Used to play cards. If budget falls below zero, the company collapses."></div>
+          <div class="w-0.5 h-7 bg-black"></div>
+          <div class="hud-stat text-center" id="stat-reputation" data-tooltip="Company Reputation. Affected by unmitigated incidents and Major Events. If it reaches 0, you lose."></div>
+          <div class="w-0.5 h-7 bg-black"></div>
+          <div class="hud-stat text-center" id="stat-risk" data-tooltip="Overall Risk Exposure. High risk indicates severe vulnerability across the organization."></div>
+        </div>
+
+        <!-- Right: Actions -->
+        <div class="flex items-center gap-2 shrink-0 flex-wrap justify-center">
+          <button id="heatmap-btn" class="comic-btn bg-white hover:bg-cyan-200 text-black py-1.5 px-3 rounded text-xs" data-tooltip="Toggle Heatmap Overlay">Heatmap</button>
+          <button id="encyclopedia-btn" class="comic-btn bg-white hover:bg-amber-200 text-black py-1.5 px-3 rounded text-xs" data-tooltip="Card Encyclopedia (E)">Encyclopedia</button>
+          <button id="how-to-play-btn" class="comic-btn bg-white hover:bg-emerald-200 text-black py-1.5 px-3 rounded text-xs" data-tooltip="Game Rules & Guide">Guide</button>
+          <button id="profile-btn" class="comic-btn bg-white hover:bg-pink-200 text-black py-1.5 px-3 rounded text-xs" data-tooltip="Player Profile">Profile</button>
+
+          <button id="consult-btn" class="comic-btn bg-[#00E5FF] hover:bg-[#33ECFF] text-black py-1.5 px-3 rounded text-xs flex items-center gap-1" data-tooltip="Get strategic advice (Cost: 1 Rep)">
+            ⚡ Consult
+          </button>
+          <button id="end-month-btn" class="comic-btn bg-[#FF2E63] hover:bg-[#FF547D] text-white py-1.5 px-4 rounded text-xs flex items-center gap-1 font-heading tracking-widest" data-tooltip="End current month (Space)">
+            END MONTH POW! ➔
+          </button>
+        </div>
+      </header>
+
+      <main class="flex-1 flex flex-col gap-4 min-h-0">
+        <div class="flex-1 flex gap-4 min-h-0 overflow-hidden">
+          <!-- Middle Section: The Department Panels -->
+          <section
+            id="departments-panel"
+            class="flex-[3.5] grid grid-cols-5 gap-3 overflow-hidden relative"
+          >
+            <!-- Departments will be rendered here by JS -->
+          </section>
+
+          <!-- Activity Log & Board Events (Right Panel) -->
+          <aside class="flex-[1] flex flex-col gap-3 overflow-hidden">
+            <div
+              id="board-events-panel"
+              class="comic-panel p-3 shrink-0 bg-white"
+            >
+              <h3
+                class="text-xs font-heading text-black uppercase tracking-wider mb-1 flex justify-between items-center border-b-2 border-black pb-1"
+              >
+                <span>⚡ BOARD CHRONICLE</span>
+                <span id="next-event-month" class="text-rose-600 font-bold"></span>
+              </h3>
+              <div
+                id="upcoming-event-name"
+                class="text-sm font-comic text-black mb-0.5"
+              ></div>
+              <div
+                id="upcoming-event-desc"
+                class="text-xs text-slate-700 leading-tight font-sans"
+              ></div>
+            </div>
+
+            <div
+              class="comic-panel p-3 shrink-0 bg-white"
+              id="health-graph-panel"
+              data-tooltip="Company Health plotted by Overall Risk Exposure over the past 12 months. Lower is better."
+            >
+              <h3
+                class="text-xs font-heading text-black uppercase tracking-wider mb-1 border-b-2 border-black pb-1"
+              >
+                📊 RISK RADAR
+              </h3>
+              <svg
+                id="health-graph-svg"
+                width="100%"
+                height="50"
+                class="overflow-visible"
+              >
+                <!-- SVG elements -->
+              </svg>
+            </div>
+
+            <div
+              class="comic-panel p-3 flex-1 flex flex-col overflow-hidden bg-white"
+            >
+              <h3
+                class="text-xs font-heading text-black uppercase tracking-wider mb-2 shrink-0 border-b-2 border-black pb-1"
+              >
+                📜 DISPATCH LOG
+              </h3>
+              <div
+                id="activity-log"
+                class="text-xs font-sans space-y-1.5 overflow-y-auto flex-1 pr-1"
+              >
+                <!-- Logs go here -->
+              </div>
+            </div>
+          </aside>
+        </div>
+
+        <!-- Bottom Section: The Player's Hand -->
+        <section
+          id="hand-panel"
+          class="h-60 comic-panel p-3 bg-[#FAF5E8] flex gap-3 items-center px-4 overflow-x-auto shrink-0 shadow-[6px_6px_0px_#000]"
+        >
+          <!-- Player's hand of cards will be rendered here by JS -->
+        </section>
+      </main>
+    </div>
+
+  </body>
+</html>
